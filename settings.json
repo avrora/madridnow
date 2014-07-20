@@ -1,0 +1,8 @@
+{
+  "public":{
+    "googleAnalytics": {
+      "id": "UA-46763683-3",
+      "host": "http://madridnow.meteor.com/"
+    }
+  }
+}
