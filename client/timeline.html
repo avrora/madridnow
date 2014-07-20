@@ -1,0 +1,26 @@
+<template name="timeline">
+    <div class="container standarUserBody">
+        <div class="row">
+            {{#each asItHappened}}
+            <ul class="timeline">
+                <li class={{position}}>
+                    <div class={{badge}}><i class={{icon}}></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">{{title}}/>
+                            </h4>
+                        </div>
+                        <div class="timeline-body">
+                            <a href={{link}} target="_blank">
+                                <img src={{picture}} alt={{title}}>
+                            </a>
+                            <p>By <em>{{username}}</em> <standard class="text-muted"><i class="fa fa-time"></i>{{timeAgo}}</standard></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            {{/each}}
+        </div>
+    </div>
+</template>
