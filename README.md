@@ -5,7 +5,7 @@
 * [Instagram real-time API](http://instagram.com/developer/realtime/)
 
 ## Demo
-http://madrid.meteor.com
+http://madridnow.meteor.com
 
 ## Licence
 

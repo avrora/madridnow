@@ -14,7 +14,7 @@ Meteor.methods(
 
       try {
         // this is object id assigned by Instagram
-        var madridGeoId = 6534045;
+        var madridGeoId = 6539015;
 
         var result = HTTP.call("GET", "https://api.instagram.com/v1/geographies/" + madridGeoId + "/media/recent?client_id=064292c073624d75a780ed063212bb7d&count="+amountOfPics);
 
