@@ -44,7 +44,7 @@ Meteor.methods(
             }
           }
 
-          var isDduplicate = InstagramPictures.find({createdAt: data.created_time * 1000}).fetch();
+          var isDduplicate = InstagramPictures.find({picture: data.images.low_resolution.url}).fetch();
 
           if (isDduplicate.length === 0) {
 
@@ -58,7 +58,9 @@ Meteor.methods(
               picture: data.images.low_resolution.url
             });
           } else {
-            console.log("skip duplicate: ", caption);
+            if (debugMethod) {
+              console.log("skip duplicate: ", caption);
+            }
           }
 
         }
