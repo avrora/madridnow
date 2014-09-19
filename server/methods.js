@@ -44,24 +44,33 @@ Meteor.methods(
             }
           }
 
-          var isDduplicate = InstagramPictures.find({picture: data.images.low_resolution.url}).fetch();
+          var possibleTimeouts = ['0', '2', '4', '6', '8'];
+          var timeToWait = parseInt(Random.choice(possibleTimeouts), 10);
 
-          if (isDduplicate.length === 0) {
+          console.log('wait for ', timeToWait + ' for ' + data.images.low_resolution.url)
 
-            // all the data is here, save it
-            InstagramPictures.insert({
-              title: caption,
-              createdAt: data.created_time * 1000,
-              type: 'instagram',
-              username: data.user.username,
-              link: data.link,
-              picture: data.images.low_resolution.url
-            });
-          } else {
-            if (debugMethod) {
-              console.log("skip duplicate: ", caption);
+          Meteor.setTimeout(function(){
+            var isDduplicate = InstagramPictures.find({picture: data.images.low_resolution.url}).fetch();
+
+            if (isDduplicate.length === 0) {
+
+              // all the data is here, save it
+              InstagramPictures.insert({
+                title: caption,
+                createdAt: data.created_time * 1000,
+                type: 'instagram',
+                username: data.user.username,
+                link: data.link,
+                picture: data.images.low_resolution.url
+              });
+            } else {
+              if (!debugMethod) {
+                console.log("skip duplicate: ", caption);
+              }
             }
-          }
+
+
+          }, timeToWait);
 
         }
         return true;
