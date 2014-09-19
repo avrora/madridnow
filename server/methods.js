@@ -44,15 +44,22 @@ Meteor.methods(
             }
           }
 
-          // all the data is here, save it
-          InstagramPictures.insert({
-            title: caption,
-            createdAt: data.created_time * 1000,
-            type: 'instagram',
-            username: data.user.username,
-            link :data.link,
-            picture: data.images.low_resolution.url
-          });
+          var isDduplicate = InstagramPictures.find({createdAt: data.created_time * 1000}).fetch();
+
+          if (isDduplicate.length === 0) {
+
+            // all the data is here, save it
+            InstagramPictures.insert({
+              title: caption,
+              createdAt: data.created_time * 1000,
+              type: 'instagram',
+              username: data.user.username,
+              link: data.link,
+              picture: data.images.low_resolution.url
+            });
+          } else {
+            console.log("skip duplicate: ", caption);
+          }
 
         }
         return true;
